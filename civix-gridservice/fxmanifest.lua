@@ -4,15 +4,17 @@ lua54 'yes'
 
 author 'Civix'
 description 'Civix Grid Service field-repair job with real electrical cabinet interactions'
-version '1.0.0'
+version '1.0.1'
 
 shared_scripts {
     'config.lua',
+    'shared/runtime.lua',
     'shared/items.lua'
 }
 
 client_scripts {
-    'client/main.lua'
+    'client/main.lua',
+    'client/notifications.lua'
 }
 
 server_scripts {
