@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civix Grid Service</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section id="jobHud" class="job-hud hidden" aria-hidden="true">
+        <header>
+            <div>
+                <span class="eyebrow">CIVIX GRID SERVICE</span>
+                <strong id="hudDistrict">Awaiting dispatch</strong>
+            </div>
+            <span id="hudProgress" class="progress-pill">0 / 0</span>
+        </header>
+        <div class="work-order">
+            <span id="hudLabel">No active work order</span>
+            <small id="hudStatus">Stand by</small>
+        </div>
+        <div class="hud-grid">
+            <div><small>FAULT</small><strong id="hudFault">Diagnosis pending</strong></div>
+            <div><small>DISTANCE</small><strong id="hudDistance">-- m</strong></div>
+            <div><small>RANK</small><strong id="hudRank">Grid Apprentice</strong></div>
+            <div><small>PROGRESS</small><strong id="hudXp">0 XP</strong></div>
+        </div>
+    </section>
+
+    <section id="minigame" class="minigame hidden" aria-hidden="true">
+        <div class="panel">
+            <header class="panel-header">
+                <div>
+                    <span class="eyebrow">LIVE CABINET SERVICE</span>
+                    <h1>Conductor Routing</h1>
+                </div>
+                <div class="timer-wrap">
+                    <small>SAFETY WINDOW</small>
+                    <strong id="timer">02:00</strong>
+                </div>
+            </header>
+
+            <div class="meter-row">
+                <div><small>DIAGNOSED FAULT</small><strong id="faultLabel">Unknown fault</strong></div>
+                <div><small>EXPECTED READING</small><strong id="voltageReadout">-- V</strong></div>
+                <div><small>CONTINUITY</small><strong id="continuity">OPEN</strong></div>
+                <div><small>MISTAKES</small><strong id="mistakes">0</strong></div>
+            </div>
+
+            <p class="instruction">Drag every conductor from the left terminal to its matching terminal on the right. The wire colour and terminal code must match.</p>
+
+            <div id="board" class="wiring-board">
+                <div id="leftNodes" class="node-column"></div>
+                <svg id="wireLayer" class="wire-layer" aria-hidden="true">
+                    <line id="tempWire" class="temp-wire hidden" x1="0" y1="0" x2="0" y2="0"></line>
+                </svg>
+                <div id="rightNodes" class="node-column right-column"></div>
+            </div>
+
+            <footer>
+                <span>LOCKOUT ACTIVE • INSULATED PPE REQUIRED</span>
+                <button id="abortButton" type="button">Abort Repair</button>
+            </footer>
+        </div>
+    </section>
+
+    <script src="app.js"></script>
+</body>
+</html>
