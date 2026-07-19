@@ -1,5 +1,0 @@
-Resource: civix-gridservice
-Job ID: gridservice
-Event namespace: civix-gridservice
-SQL table: civix_gridservice_progress
-Item namespace: grid_*

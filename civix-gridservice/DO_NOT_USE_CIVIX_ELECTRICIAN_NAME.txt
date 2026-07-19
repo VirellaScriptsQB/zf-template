@@ -1,1 +1,0 @@
-This is civix-gridservice. It is separate from civix-electrician.
