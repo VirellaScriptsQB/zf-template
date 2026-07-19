@@ -1,0 +1,341 @@
+* {
+    box-sizing: border-box;
+    user-select: none;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background: transparent !important;
+    font-family: Inter, Arial, sans-serif;
+    color: #f4f7fa;
+}
+
+body {
+    pointer-events: none;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.eyebrow {
+    display: block;
+    color: #ffbf3c;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.job-hud {
+    position: fixed;
+    top: 3.2vh;
+    right: 2.2vw;
+    width: 350px;
+    padding: 14px;
+    border: 1px solid rgba(255, 191, 60, 0.42);
+    border-radius: 10px;
+    background: rgba(12, 18, 24, 0.92);
+    box-shadow: 0 16px 38px rgba(0, 0, 0, 0.28);
+}
+
+.job-hud header,
+.panel-header,
+.job-hud footer,
+.panel footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.job-hud header strong {
+    display: block;
+    margin-top: 3px;
+    font-size: 17px;
+}
+
+.progress-pill {
+    min-width: 62px;
+    padding: 8px 10px;
+    border: 1px solid rgba(255, 191, 60, 0.36);
+    border-radius: 7px;
+    background: rgba(255, 191, 60, 0.1);
+    color: #ffcf64;
+    font-size: 13px;
+    font-weight: 800;
+    text-align: center;
+}
+
+.work-order {
+    margin: 12px 0;
+    padding: 11px;
+    border-left: 3px solid #ffbf3c;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.045);
+}
+
+.work-order span,
+.work-order small {
+    display: block;
+}
+
+.work-order span {
+    font-size: 13px;
+    font-weight: 750;
+}
+
+.work-order small {
+    margin-top: 4px;
+    color: #aebbc4;
+    font-size: 11px;
+}
+
+.hud-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+}
+
+.hud-grid > div,
+.meter-row > div {
+    min-width: 0;
+    padding: 9px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.035);
+}
+
+.hud-grid small,
+.meter-row small {
+    display: block;
+    margin-bottom: 4px;
+    color: #85939d;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.11em;
+}
+
+.hud-grid strong {
+    display: block;
+    overflow: hidden;
+    font-size: 11px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.minigame {
+    position: fixed;
+    top: 50%;
+    right: 2.5vw;
+    width: min(860px, 72vw);
+    transform: translateY(-50%);
+    pointer-events: auto;
+}
+
+.panel {
+    padding: 18px;
+    border: 1px solid rgba(255, 191, 60, 0.5);
+    border-radius: 12px;
+    background: rgba(10, 15, 20, 0.96);
+    box-shadow: 0 22px 70px rgba(0, 0, 0, 0.38);
+}
+
+.panel-header {
+    padding-bottom: 13px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.panel-header h1 {
+    margin: 3px 0 0;
+    font-size: 23px;
+    letter-spacing: 0.02em;
+}
+
+.timer-wrap {
+    min-width: 128px;
+    padding: 10px 12px;
+    border: 1px solid rgba(255, 191, 60, 0.4);
+    border-radius: 8px;
+    background: rgba(255, 191, 60, 0.08);
+    text-align: right;
+}
+
+.timer-wrap small {
+    display: block;
+    color: #acb8c0;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+}
+
+.timer-wrap strong {
+    display: block;
+    margin-top: 3px;
+    color: #ffcf64;
+    font-size: 19px;
+}
+
+.timer-wrap strong.danger {
+    color: #ff626a;
+}
+
+.meter-row {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr 1fr 0.7fr;
+    gap: 8px;
+    margin: 13px 0;
+}
+
+.meter-row strong {
+    display: block;
+    overflow: hidden;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.instruction {
+    margin: 0 0 12px;
+    color: #aebbc4;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.wiring-board {
+    position: relative;
+    display: grid;
+    grid-template-columns: 220px 1fr 220px;
+    min-height: 360px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 9px;
+    background:
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        rgba(5, 9, 12, 0.76);
+    background-size: 22px 22px;
+}
+
+.wiring-board.error {
+    animation: errorFlash 260ms ease;
+}
+
+.node-column {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 8px;
+    padding: 18px;
+}
+
+.right-column {
+    grid-column: 3;
+}
+
+.node {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 43px;
+    padding: 8px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 7px;
+    background: rgba(20, 28, 35, 0.96);
+}
+
+.node.right {
+    flex-direction: row-reverse;
+}
+
+.node.connected {
+    opacity: 0.46;
+}
+
+.node-label {
+    color: #d9e1e6;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+}
+
+.terminal {
+    width: 22px;
+    height: 22px;
+    border: 3px solid #dce6ed;
+    border-radius: 50%;
+    background: var(--wire-color);
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.05);
+    cursor: crosshair;
+}
+
+.wire-layer {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+}
+
+.wire,
+.temp-wire {
+    fill: none;
+    stroke-width: 7;
+    stroke-linecap: round;
+    filter: drop-shadow(0 3px 2px rgba(0, 0, 0, 0.45));
+}
+
+.temp-wire {
+    stroke: #ffbf3c;
+    stroke-dasharray: 9 7;
+}
+
+.panel footer {
+    margin-top: 13px;
+}
+
+.panel footer span {
+    color: #8e9da7;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+}
+
+.panel button {
+    padding: 9px 14px;
+    border: 1px solid rgba(255, 98, 106, 0.55);
+    border-radius: 7px;
+    background: rgba(255, 98, 106, 0.1);
+    color: #ff7b82;
+    font: inherit;
+    font-size: 11px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.panel button:hover {
+    background: rgba(255, 98, 106, 0.18);
+}
+
+@keyframes errorFlash {
+    0%, 100% { border-color: rgba(255, 255, 255, 0.08); }
+    50% { border-color: rgba(255, 74, 84, 0.95); box-shadow: inset 0 0 30px rgba(255, 74, 84, 0.16); }
+}
+
+@media (max-width: 1100px) {
+    .minigame {
+        width: 76vw;
+    }
+
+    .wiring-board {
+        grid-template-columns: 190px 1fr 190px;
+    }
+}
