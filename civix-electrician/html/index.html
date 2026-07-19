@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civix Electrician</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section id="jobHud" class="job-hud hidden" aria-live="polite">
+        <div class="hud-accent"></div>
+        <div class="hud-topline">
+            <span class="hud-kicker">CIVIX GRID SERVICES</span>
+            <span id="hudProgress" class="hud-progress">0 / 0</span>
+        </div>
+        <h2 id="hudDistrict">Awaiting dispatch</h2>
+        <p id="hudLabel">No active work order</p>
+        <div class="hud-status-row">
+            <span class="pulse-dot"></span>
+            <span id="hudStatus">Stand by</span>
+        </div>
+        <div class="hud-meta">
+            <span id="hudFault">Diagnosis pending</span>
+            <span id="hudDistance">-- m</span>
+        </div>
+        <div class="hud-rank">
+            <span id="hudRank">Apprentice</span>
+            <span id="hudXp">0 XP</span>
+        </div>
+    </section>
+
+    <main id="minigame" class="minigame hidden" aria-hidden="true">
+        <section class="panel">
+            <header class="panel-header">
+                <div>
+                    <span class="eyebrow">LIVE SERVICE CABINET</span>
+                    <h1>Conductor Restoration</h1>
+                </div>
+                <div id="timer" class="timer">01:30</div>
+            </header>
+
+            <div class="safety-strip">
+                <div class="safety active"><span>01</span> PPE VERIFIED</div>
+                <div class="safety active"><span>02</span> LOTO APPLIED</div>
+                <div class="safety active"><span>03</span> ZERO ENERGY</div>
+            </div>
+
+            <div class="meter-grid">
+                <div class="meter-card">
+                    <span>FAULT</span>
+                    <strong id="faultLabel">Unknown fault</strong>
+                </div>
+                <div class="meter-card">
+                    <span>EXPECTED</span>
+                    <strong id="voltageReadout">-- V</strong>
+                </div>
+                <div class="meter-card">
+                    <span>CONTINUITY</span>
+                    <strong id="continuity">OPEN</strong>
+                </div>
+                <div class="meter-card">
+                    <span>ERRORS</span>
+                    <strong id="mistakes">0</strong>
+                </div>
+            </div>
+
+            <div class="instructions">
+                Connect every conductor to the terminal carrying the matching identification colour. Incorrect contact increases fault risk.
+            </div>
+
+            <div id="board" class="board">
+                <div id="leftNodes" class="node-column left"></div>
+                <svg id="wireLayer" class="wire-layer" preserveAspectRatio="none">
+                    <line id="tempWire" x1="0" y1="0" x2="0" y2="0" class="temp-wire hidden"></line>
+                </svg>
+                <div class="cabinet-core">
+                    <div class="warning-mark">⚡</div>
+                    <span>ISOLATED</span>
+                    <small>120/240 VAC</small>
+                </div>
+                <div id="rightNodes" class="node-column right"></div>
+            </div>
+
+            <footer class="panel-footer">
+                <div class="legend"><span class="mouse-icon">●</span> Drag conductor to matching terminal</div>
+                <button id="abortButton" type="button">ABORT SAFELY</button>
+            </footer>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
