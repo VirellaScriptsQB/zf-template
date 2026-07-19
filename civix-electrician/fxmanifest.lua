@@ -3,7 +3,7 @@ game 'gta5'
 lua54 'yes'
 
 author 'Civix'
-description 'Civix Electrician field-service job with realistic street electrical-box repairs'
+description 'Civix Electrician field-service job with real street electrical-box repairs'
 version '2.0.0'
 
 shared_scripts {
@@ -30,9 +30,15 @@ files {
 }
 
 dependencies {
+    'oxmysql',
     'civix-core',
     'civix-interact',
     'civix-inventory',
     'civix-notify',
     'civix-vehiclekeys'
+}
+
+escrow_ignore {
+    'config.lua',
+    'shared/items.lua'
 }
