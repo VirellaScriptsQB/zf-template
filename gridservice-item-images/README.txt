@@ -1,0 +1,1 @@
+Grid Service PNG item pack source icons. The pull-request workflow converts these eleven SVG source assets into 512x512 transparent PNG inventory images and packages them into civix-gridservice-item-images-png.zip.
