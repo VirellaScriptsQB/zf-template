@@ -33,3 +33,5 @@ jobs:
           name: gridservice-item-images
           path: dist/gridservice-item-images.zip
           if-no-files-found: error
+
+# Triggered for the Grid Service item-image delivery.
