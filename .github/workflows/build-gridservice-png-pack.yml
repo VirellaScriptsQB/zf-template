@@ -1,0 +1,35 @@
+name: Build Grid Service PNG Pack
+
+on:
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install converter
+        run: python -m pip install cairosvg
+      - name: Convert and zip
+        shell: bash
+        run: |
+          set -e
+          mkdir -p dist/gridservice-item-images
+          python - <<'PY'
+          from pathlib import Path
+          import cairosvg
+          src = Path('civix-gridservice/images')
+          out = Path('dist/gridservice-item-images')
+          names = ['grid_toolkit','grid_multimeter','grid_gloves','grid_lockout_tag','grid_connector','grid_wire','grid_service_fuse','grid_control_relay','grid_terminal_block','grid_grounding_clamp','grid_electrical_tape']
+          for name in names:
+              cairosvg.svg2png(url=str(src / f'{name}.svg'), write_to=str(out / f'{name}.png'), output_width=256, output_height=256)
+          PY
+          cd dist
+          zip -r gridservice-item-images.zip gridservice-item-images
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gridservice-item-images
+          path: dist/gridservice-item-images.zip
+          if-no-files-found: error
