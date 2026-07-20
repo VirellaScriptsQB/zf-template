@@ -1,0 +1,38 @@
+name: Build Grid Service PNG Artifact
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  build-gridservice-png-pack:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout pull request
+        uses: actions/checkout@v4
+
+      - name: Install conversion tools
+        run: sudo apt-get update && sudo apt-get install -y imagemagick zip
+
+      - name: Convert icons to PNG
+        run: |
+          set -e
+          rm -rf gridservice-png-items
+          mkdir -p gridservice-png-items
+          for file in gridservice-item-images/*.svg; do
+            name="$(basename "$file" .svg)"
+            convert -background none -density 300 "$file" -resize 512x512 "gridservice-png-items/${name}.png"
+          done
+          cd gridservice-png-items
+          zip -9 ../civix-gridservice-item-images-png.zip ./*.png
+
+      - name: Upload ZIP artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: civix-gridservice-item-images-png
+          path: civix-gridservice-item-images-png.zip
+          if-no-files-found: error
